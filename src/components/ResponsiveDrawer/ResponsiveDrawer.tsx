@@ -2,6 +2,7 @@ import React,{ReactNode,useEffect} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,12 +16,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import '../../../node_modules/prismjs/themes/prism.css';
-import Prism from 'prismjs';
-import "prismjs/components/prism-typescript"
-import "prismjs/components/prism-jsx"
-import "prismjs/components/prism-tsx"
-import { NoSsr } from '@material-ui/core';
+import {Code, If} from 'handy-ui'
+import Components from '../Components/Components';
+import Demo from '../Demo/Demo';
+import { Link } from '@material-ui/core';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
+    //toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
     },
@@ -66,20 +65,17 @@ export default function ResponsiveDrawer(props: Props) {
   const { children } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-    const components = [{name:'Components', subtitle: 'Images are ugly, until they are loaded.',description:'In this demo you can see how the handy-ui JPG Component handles Image Lazy Loading. With Primitive simple svg Shape with a size of 800Kb (!) are used as placeholders. This allows the Page to be ready and interactable in a minimal time while providing meaningful content. And When the Images comes in the Users Viewport handy-ui loads the actual image source and unblurs the Image with a nice animation when loading is done. For a better understanding, try to throttle your network connection with the DevTools.',examples:[{title:'first', description:'nothing',snippet:`<Jpg src='example'/>`,demo:'Jpg'}]},{name:'Jpg', subtitle: 'Images are ugly, until they are loaded.',description:'In this demo you can see how the handy-ui JPG Component handles Image Lazy Loading. With Primitive simple svg Shape with a size of 800Kb (!) are used as placeholders. This allows the Page to be ready and interactable in a minimal time while providing meaningful content. And When the Images comes in the Users Viewport handy-ui loads the actual image source and unblurs the Image with a nice animation when loading is done. For a better understanding, try to throttle your network connection with the DevTools.',examples:[{title:'first', description:'nothing',snippet:`<Jpg src='example'/>`,demo:'Jpg'}]}]
     const [openComponent, setOpenComponent] = React.useState(0);
-    const component = components[openComponent]
+    const component = Components[openComponent]
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  useEffect(()=>{Prism.highlightAll()},[openComponent])
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
       <Divider />
       <List>
-        {components.map(({name}, index) => (
+        {Components.map(({name}, index) => (
           <ListItem button key={name} onClick={() => {handleDrawerToggle();setOpenComponent(index)}}>
             <ListItemText primary={name}/>
           </ListItem>
@@ -109,7 +105,7 @@ export default function ResponsiveDrawer(props: Props) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav>
           <Drawer
             variant="temporary"
             anchor={'left'}
@@ -125,8 +121,7 @@ export default function ResponsiveDrawer(props: Props) {
             {drawer}
           </Drawer>
       </nav>
-      <main className={classes.content} style={{marginTop:'100px',marginLeft:'20px'}}>
-        <div className={classes.toolbar} />
+      <main className={classes.content} style={{marginTop:'100px',marginLeft:'20px',marginRight:'20px',marginBottom:'20px'}}>
           <Typography variant="h4" noWrap>
             {component.name}
           </Typography>
@@ -136,18 +131,45 @@ export default function ResponsiveDrawer(props: Props) {
           <Typography variant="body1">
             {component.description}
           </Typography>
-          {component.examples.map((item,index)=>{return (<pre
-          style={{
-            padding: '20px 30px',
-            background: '#f9f9fb',
-            boxShadow: 'inset 0 0 10px #e3e7ea, inset 0 0 2px #e3e7ea, 0 1px 0 0 #fff',
-            margin: '0 0 40px',
-            borderRadius: '5px',
-            textShadow:' 0 1px 0 #fff!important',
-            border: '1px solid #e6e9ec'
-          }}><code className="language-tsx">{item.snippet.trim()}</code>
-        </pre>)})}
-        {children}
+          <If is={component.problem}>
+            <Typography variant="h6">
+                {'The Problem:'}
+            </Typography>
+            <Typography variant="body1">
+                {component.problem}
+            </Typography>
+          </If>
+          <If is={component.solution}>
+            <Typography variant="h6">
+                {'The Solution:'}
+            </Typography>
+            <Typography variant="body1">
+                {component.solution}
+            </Typography>
+          </If>
+          <If is={component.demo}>
+            <Typography variant="body1">
+                {'See this in a live '}<Link href='demo/Jpg' target='_blank'>Demo</Link>
+            </Typography>
+          </If>
+          {component.examples.map((item,index)=>{return (<>
+          <Paper style={{ marginBottom:'30px',padding:'30px'}}>
+
+            <Typography variant="h5">
+                {item.title}
+            </Typography>
+            <Typography variant="body1">
+                {item.description}
+            </Typography>
+          <Paper style={{padding:'30px', marginBottom:'30px', marginTop:'30px'}}>
+            <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} />
+            </Paper>
+            <Code lang='tsx'>{item.snippet}</Code>
+            </Paper>
+            </>)}
+            )}
+
+  <Divider />
       </main>´
     </div>
   );

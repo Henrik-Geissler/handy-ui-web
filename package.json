@@ -6,13 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prebuild": "find ./public/ -name '*.jpg.svg' -delete; find ./public/ -name '*.jpg' -exec sqip -o {}.svg {} \\;"
+    "gen-svg": "find ./public/ -name '*.jpg.svg' -delete; find ./public/ -name '*.jpg' -exec sqip -o {}.svg {} \\;"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
-    "handy-ui": "^1.0.46",
+    "handy-ui": "^1.0.55",
     "material-ui-image": "^3.3.1",
     "next": "^9.1.7",
     "notistack": "^1.0.3",
