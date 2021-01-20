@@ -77,7 +77,7 @@ export default function ResponsiveDrawer(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap style={{marginLeft:'20px'}}>
             {'handy-ui > '} {component.name}
           </Typography>
         </Toolbar>
@@ -98,12 +98,12 @@ export default function ResponsiveDrawer(props: Props) {
             {drawer}
           </Drawer>
       </nav>
-      <main className={classes.content} style={{marginTop:'100px',marginLeft:'20px',marginRight:'20px',marginBottom:'20px'}}>
+      <main style={{marginTop:'100px',marginLeft:'20px',marginRight:'20px',marginBottom:'20px'}}>
           <Typography variant="h4" noWrap>
             {component.name}
           </Typography>
           <Typography variant="h6">
-            Motivation: {component.subtitle}
+            Motivation: <i>"{component.subtitle}"</i>
           </Typography>
           <Typography variant="body1">
             {component.description}
@@ -137,11 +137,11 @@ export default function ResponsiveDrawer(props: Props) {
             <Typography variant="body1">
                 {item.description}
             </Typography>
-            <Box flexDirection="row" style={{display:'flex',marginBottom:'30px', marginTop:'30px'}}>
-                <div style={{marginBottom:'auto',width:'50%'}}>
+            <Box className='handy-box' flexDirection="row" style={{display:'flex',marginBottom:'30px', marginTop:'30px'}}>
+                <div className='handy-code'>
                     <Code lang='tsx' >{item.snippet}</Code>
                 </div>
-                <Paper style={{marginBottom:'auto',padding:'30px', overflow:'scroll', maxHeight:'80vh'}}>
+                <Paper style={{marginLeft:'auto',marginRight:'auto',marginTop:'auto',marginBottom:'auto',padding:'30px', overflow:'scroll', maxHeight:'80vh'}}>
                     <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} />
                 </Paper>
             </Box>

@@ -6,15 +6,16 @@ const IfDemo = (): JSX.Element => {
    const days = ['Mo','Tu','We','Th','Fr','Sa','Su']
     return (
     <>
-      {days.map((item)=>{
+      {days.map((item)=>
         <>
           {item}
-          <If is={item[0]==='S'}>
-            <Badge>free</Badge>
+          {': '}
+          <Badge>gym</Badge>
+          <If is={item[0]!=='S'}>
+            <Badge>work</Badge>
           </If>
-          <Badge>Pause at 1</Badge>
         </>
-      })}
+      )}
     </>
     );
 }

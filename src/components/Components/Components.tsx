@@ -14,62 +14,65 @@ const Components = [
       subtitle: 'explore them handy-ui components.',
     },
     {
-      description: 'Fetching a Resource is sometimes a very specific scenario with a lot of context. Sometimes you just want to fetch a resource.',
+      description: 'Fetching from APIs is sometimes a very specific scenario with a lot of context. But sometimes we just want to fetch a resource.',
       //demo:'Resource',
       examples: [
         {
-          description: 'Get a resource from an API and display it when its loaded. This example fetches the jsonplaceholder API from typicode. In the render attribute we define to return the data\'s name.',
+          description: 'Fetch data from an API and render it when its loaded. In the render attribute we define what parts of the data should be rendered and how.',
           snippet: `<Resource
-    src='myapi.com/users/1'
-    render={data => data.name}
+  src='myapi.com/users/1'
+  render={data =>
+    <Text>{data.name}</Text>
+  }
 />`,
           title: 'Get data',
         },
         {
-          description: 'Using the jsonplaceholder API from typicode again we this time render all the results',
-          snippet: `<Resource
+          description: 'Often times we want to loop over the fetched data. We can do so inside of the render property.',
+          snippet: `
+<ol>
+  <Resource
     src='myapi.com/users'
     render={data =>
-        <ol>
-            {data.map(eachUser =>
-                <li>
-                    {eachUser.name}
-                    <b> {eachUser.company.name} </b>
-                    <a href={eachUser.website}>{eachUser.website}</a>
-                </li>
-            )}
-        </ol>
+      data.map(eachUser =>
+        <li>
+          {eachUser.name}
+          {' @ '}
+          {eachUser.company.name}
+        </li>
+      )
     }
-/>`,
-          title: 'Render a list of data',
+  />
+</ol>`,
+          title: 'Data handling',
         },
         {
-            description: 'Optionally you can define a loading indicator.',
+            description: 'Optionally we can define a loading indicator.',
             snippet: `<Resource
-    src='myapi.com/slowEndpoint'
-    loadingIndicator={<CircularProgress />}
-    render={data =>
-        "I\'m done! Restart to see the loading indicator"
-    }
+  src='myapi.com/slowEndpoint'
+  loadingIndicator={<CircularProgress />}
+  render={data =>
+    "I\'m done! Restart to see the loading indicator"
+  }
 />`,
             title: 'Loading indicator',
           },
           {
-              description: 'If you want to dynamically change the resource or just refetch, update the src.',
+              description: 'If we want to dynamically change the resource or just refetch, we just update the src.',
               snippet: `
 const [user, setUser] = useState(1)
 return (
-    <>
-        <Button
-            onClick={() => setUser(1+user%10)}
-        >
-            Next User
-        </Button>
-        <Resource
-            src={\`myapi.com/users/\${user}\`}
-            render={data => data.name}
-        />
-    </>
+  <>
+    <Button
+      onClick={() => setUser(1+user%10)}
+    >
+      Next User
+    </Button>
+    <Resource
+      src={\`myapi.com/users/\${user}\`}
+      render={data => data.name}
+    />
+  </>
 )`,
               title: 'Reload',
             },
@@ -103,38 +106,38 @@ return (
       subtitle: 'The web is strangely silent.',
     },
     {
-      description: 'Coloring code snippets is fun with this Component.',
+      description: 'Creating documentation is fun with this Component.',
       examples: [
         {
           description: 'Highlight code in any language.',
           snippet: `const myCode = \`
 @main-color: red;
 .foo {
-    /** red background **/
-    background: @main-color;
+  /** red background **/
+  background: @main-color;
 }\`
 
 <Code lang='css'>
-    {myCode}
+  {myCode}
 </Code>`,
           title: 'Automate syntax highlighting',
         },
         {
-          description: 'Any children of Code will not be rendered or mounted. Instead the code of the component gets formatted and syntax highlighted.',
+          description: 'Any children will not be rendered or executed. Instead the code of the component gets formatted and syntax highlighted. This is useful for debugging as well as for documentation.',
           snippet: `<Code lang='tsx'>
-    <Text id="CodeSample">Hello World!</Text>
+  <Text id="CodeSample">Hello World!</Text>
 </Code>`,
           title: 'Print your components',
         },
       ],
       name: 'Code',
-      subtitle: 'Open your source.',
+      subtitle: 'Documentation — Future you will thank you!',
     },
     {
-      description: 'There are a lot of ways to keep your compnents easy to read. The If Component can help you add a condition without the need of restructuring.',
+      description: 'There are a lot of ways to keep your components easy to read. This component can help us to add a condition without the need of restructuring.',
         examples: [
         {
-          description: 'A single Jpg.',
+          description: 'Inside of JSX, without complex syntax.',
           snippet: `<Jpg src='files/img/tree'/>`,
           title: 'Render conditionally',
         },
@@ -155,11 +158,11 @@ return (
         {
           description: 'A long list of huge Images.',
           snippet: `[
-    'sky',
-    'city',
-    //...
-].map(() => 
-    <Jpg src='files/img/tree'/>
+  'sky',
+  'city',
+  // ...
+].map(item => 
+  <Jpg src={\`files/img/\${item}\`}/>
 )`,
           title: 'Images',
         },
