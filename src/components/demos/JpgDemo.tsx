@@ -6,7 +6,7 @@ const JpgDemo = (): JSX.Element => {
     return (
       <>
         <div>Images are ugly, until they are loaded. In this demo you can see how the handy-ui JPG Component handles Image Lazy Loading. With Primitive simple svg Shape with a size of 800Kb (!) are used as placeholders. This allows the Page to be ready and interactable in a minimal time while providing meaningful content. And When the Images comes in the Users Viewport handy-ui loads the actual image source and unblurs the Image with a nice animation when loading is done. For a better understanding, try to throttle your network connection with the DevTools.</div>
-                      <div style={{height:`${1.1*100*exampleImages.length*9/16/2}vw`,width:'50%',margin:'auto',justifyContent:'space-between',alignItems:'center',display:'flex',flexDirection:'column',position:'relative'}}>
+                      <div style={{maxWidth:'400px',width:'100%',margin:'auto',justifyContent:'space-between',alignItems:'center',display:'flex',flexDirection:'column',position:'relative'}}>
                         {exampleImages.map((image)=>{
                         return(<Jpg src={image}/>)
                         })}

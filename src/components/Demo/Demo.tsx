@@ -5,6 +5,12 @@ import AudioSimple from '../demos/AudioSimple';
 import ComponentsList from '../demos/ComponentsList';
 import JpgDemo from '../demos/JpgDemo';
 import JpgSimple from '../demos/JpgSimple';
+import CodeSimple from '../demos/CodeSimple';
+import CodeSimple2 from '../demos/CodeSimple2';
+import ResourceSimple from '../demos/ResourceSimple';
+import ResourceArray from '../demos/ResourceArray';
+import ResourceLoading from '../demos/ResourceLoading';
+import ResourceSwitch from '../demos/ResourceSwitch';
 type DemoProps = {
     demo:string
     setOpenComponent:CallableFunction
@@ -28,6 +34,14 @@ const Demo = ({demo,setOpenComponent}: DemoProps): JSX.Element => {
             return (
                 <AudioCustom />
                 );
+        case 'Code: Automate syntax highlighting':
+            return (
+                <CodeSimple />
+                );
+        case 'Code: Print your components':
+            return (
+                <CodeSimple2 />
+                );
         case 'Jpg: Simple Image':
             return (
                 <JpgSimple />
@@ -35,6 +49,22 @@ const Demo = ({demo,setOpenComponent}: DemoProps): JSX.Element => {
         case 'Jpg: Images':
             return (
                 <JpgDemo />
+                );
+        case 'Resource: Get data':
+            return (
+                <ResourceSimple />
+                );
+        case 'Resource: Render a list of data':
+            return (
+                <ResourceArray />
+                );
+        case 'Resource: Loading indicator':
+            return (
+                <ResourceLoading />
+                );
+        case 'Resource: Reload':
+            return (
+                <ResourceSwitch />
                 );
         default:
             return (

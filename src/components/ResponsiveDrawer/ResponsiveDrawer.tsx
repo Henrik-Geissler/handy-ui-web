@@ -16,37 +16,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import {Code, If} from 'handy-ui'
+import {Code, If, Space} from 'handy-ui'
 import Components from '../Components/Components';
 import Demo from '../Demo/Demo';
-import { Link } from '@material-ui/core';
+import { Box, Link } from '@material-ui/core';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: 'flex',
-    },
-    drawer: {
-      [theme.breakpoints.up('sm')]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-    },
-    appBar: {
-      [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-      },
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
-    },
-    // necessary for content to be below app bar
-    //toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
     },
@@ -86,17 +63,17 @@ export default function ResponsiveDrawer(props: Props) {
   );
 
   return (
-    <div className={classes.root}>
+    <div>
       <CssBaseline />
         <link href="css/prism-coldark-cold.css" rel="stylesheet" />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" style={{backgroundColor: 'white',
+    color: 'black'}}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
           >
             <MenuIcon />
           </IconButton>
@@ -126,7 +103,7 @@ export default function ResponsiveDrawer(props: Props) {
             {component.name}
           </Typography>
           <Typography variant="h6">
-            {component.subtitle}
+            Motivation: {component.subtitle}
           </Typography>
           <Typography variant="body1">
             {component.description}
@@ -153,18 +130,21 @@ export default function ResponsiveDrawer(props: Props) {
             </Typography>
           </If>
           {component.examples.map((item,index)=>{return (<>
-          <Paper style={{ marginBottom:'30px',padding:'30px'}}>
-
+          <Paper style={{ marginTop:'30px',padding:'30px'}}>
             <Typography variant="h5">
                 {item.title}
             </Typography>
             <Typography variant="body1">
                 {item.description}
             </Typography>
-          <Paper style={{padding:'30px', marginBottom:'30px', marginTop:'30px'}}>
-            <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} />
-            </Paper>
-            <Code lang='tsx'>{item.snippet}</Code>
+            <Box flexDirection="row" style={{display:'flex',marginBottom:'30px', marginTop:'30px'}}>
+                <div style={{marginBottom:'auto',width:'50%'}}>
+                    <Code lang='tsx' >{item.snippet}</Code>
+                </div>
+                <Paper style={{marginBottom:'auto',padding:'30px', overflow:'scroll', maxHeight:'80vh'}}>
+                    <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} />
+                </Paper>
+            </Box>
             </Paper>
             </>)}
             )}
