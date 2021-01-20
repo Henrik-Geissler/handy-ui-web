@@ -6,7 +6,7 @@ const ResourceLoading = (): JSX.Element => {
     return (
         <>
             <Resource
-                src='http://slowwly.robertomurray.co.uk/delay/3000/url/http://jsonplaceholder.typicode.com/users/1'
+                src='https://deelay.me/5000/https://jsonplaceholder.typicode.com/users/1'
                 render={data => 'I\'m done! Restart to see the loading indicator'}
                 loadingIndicator={<CircularProgress />}
             />
