@@ -9,7 +9,7 @@ const ResourceSwitch = (): JSX.Element => {
                 Next User
             </Button>
             <Resource
-                src={`http://jsonplaceholder.typicode.com/users/${user}`}
+                src={`https://jsonplaceholder.typicode.com/users/${user}`}
                 render={data => data.name}
                 loadingIndicator={<CircularProgress />}
             />
