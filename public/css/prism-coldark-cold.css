@@ -11,6 +11,7 @@
      color: #111b27;
      background: none;
      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+     font-size: 6pt;
      text-align: left;
      white-space: pre;
      word-spacing: normal;
@@ -24,6 +25,54 @@
      -moz-hyphens: none;
      -ms-hyphens: none;
      hyphens: none;
+ }
+ @media (min-width: 400px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 7pt;
+    }
+ }
+ @media (min-width: 500px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 8pt;
+    }
+ }
+ @media (min-width: 600px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 9pt;
+    }
+ }
+ @media (min-width: 700px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 10pt;
+    }
+ }
+ @media (min-width: 800px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 11pt;
+    }
+ }
+ @media (min-width: 900px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 12pt;
+    }
+ }
+ @media (min-width: 1200px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 13pt;
+    }
+ }
+ @media (min-width: 1600px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 14pt;
+    }
  }
  
  pre[class*="language-"]::-moz-selection,
