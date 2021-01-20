@@ -6,7 +6,7 @@ const IfSimple = (): JSX.Element => {
     //const a = 
     return (
     <>
-        <If is={}>
+        <If is={false}>
           <Text></Text>
         </If>
     </>
