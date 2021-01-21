@@ -1,4 +1,4 @@
-import React,{ReactNode,useEffect} from 'react';
+import React,{ReactNode,useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -19,7 +19,7 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 import {Code, If, Space} from 'handy-ui'
 import Components from '../Components/Components';
 import Demo from '../Demo/Demo';
-import { Box, Link } from '@material-ui/core';
+import { Box, Link, Button } from '@material-ui/core';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,6 +42,7 @@ export default function ResponsiveDrawer(props: Props) {
   const { children } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [load,setLoad] = useState(0)
     const [openComponent, setOpenComponent] = React.useState(0);
     const component = Components[openComponent]
   const handleDrawerToggle = () => {
@@ -98,7 +99,7 @@ export default function ResponsiveDrawer(props: Props) {
             {drawer}
           </Drawer>
       </nav>
-      <main style={{marginTop:'100px',marginLeft:'20px',marginRight:'20px',marginBottom:'20px'}}>
+      <main className='handy-spacing' style={{marginTop:'100px',marginBottom:'20px'}}>
           <Typography variant="h4" noWrap>
             {component.name}
           </Typography>
@@ -130,7 +131,7 @@ export default function ResponsiveDrawer(props: Props) {
             </Typography>
           </If>
           {component.examples.map((item,index)=>{return (<>
-          <Paper style={{ marginTop:'30px',padding:'30px'}}>
+          <Paper className='handy-spacing' style={{ marginTop:'30px'}}>
             <Typography variant="h5">
                 {item.title}
             </Typography>
@@ -141,16 +142,36 @@ export default function ResponsiveDrawer(props: Props) {
                 <div className='handy-code'>
                     <Code lang='tsx' >{item.snippet}</Code>
                 </div>
-                <Paper style={{marginLeft:'auto',marginRight:'auto',marginTop:'auto',marginBottom:'auto',padding:'30px', overflow:'scroll', maxHeight:'80vh'}}>
-                    <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} />
+                <Paper
+                    variant="outlined"
+                    className='handy-spacing'
+                    style={{
+                        marginLeft:'auto',
+                        marginRight:'auto',
+                        marginTop:'auto',
+                        marginBottom:'auto',
+                        overflow:'scroll',
+                        maxHeight:'80vh',
+                        borderStyle:'dashed',
+                        borderWidth:'2px',
+                        transition: '2s ease',
+                    }}
+                >
+                    <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} load={load}/>
                 </Paper>
             </Box>
+            <Button onClick={() => {setLoad(load+1)}}>Reload</Button>
             </Paper>
             </>)}
             )}
+            <If is={component.demo}>
+              <Typography variant="body1" style={{marginTop:'30px'}}>
+                  {'See this in a live '}<Link href='demo/Jpg' target='_blank'>Demo</Link>
+              </Typography>
+            </If>
+      </main>
 
   <Divider />
-      </main>´
     </div>
   );
 }

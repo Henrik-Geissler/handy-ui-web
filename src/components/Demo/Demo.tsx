@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AudioAutoplay from '../demos/AudioAutoplay';
 import AudioCustom from '../demos/AudioCustom';
 import AudioSimple from '../demos/AudioSimple';
@@ -15,8 +15,16 @@ import IfDemo from '../demos/IfDemo';
 type DemoProps = {
     demo:string
     setOpenComponent:CallableFunction
+    load:number
 }
-const Demo = ({demo,setOpenComponent}: DemoProps): JSX.Element => {
+const Demo = ({demo,setOpenComponent,load}: DemoProps): JSX.Element => {
+    const [loaded,setLoaded] = useState(0)
+
+    if(loaded!=load)
+        {
+            setTimeout(()=>setLoaded(load),1000)
+            return null
+        }
     switch (demo) {
         
         case 'Components: Getting started':
@@ -47,11 +55,11 @@ const Demo = ({demo,setOpenComponent}: DemoProps): JSX.Element => {
             return (
                 <IfDemo />
                 );
-        case 'Jpg: Simple Image':
+        case 'Jpg: An image':
             return (
                 <JpgSimple />
                 );
-        case 'Jpg: Images':
+        case 'Jpg: Place as many images as you want':
             return (
                 <JpgDemo />
                 );

@@ -5,7 +5,7 @@ import { Button, CircularProgress } from '@material-ui/core';
 const ResourceSwitch = (): JSX.Element => {
     const [user, setUser] = useState(1)
     return <>
-            <Button onClick={()=>setUser(1+user%10)}>
+            <Button onClick={()=>setUser(1+user%10)} style={{marginRight:'15px'}}>
                 Next User
             </Button>
             <Resource

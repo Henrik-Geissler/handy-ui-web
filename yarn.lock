@@ -3412,10 +3412,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-handy-ui@^1.0.58:
-  version "1.0.58"
-  resolved "https://registry.yarnpkg.com/handy-ui/-/handy-ui-1.0.58.tgz#b35f755ea13f5809921adf05edac21c677f2e4e7"
-  integrity sha512-0sdOMzLzcGVCoVlJw8Yj4kqxpv8V8uFA4FtkmtYHKaJvO9dS5qsI7DBOwX4YNmnEIRYC0o3T5ajMIkSzt6BImg==
+handy-ui@^1.0.59:
+  version "1.0.59"
+  resolved "https://registry.yarnpkg.com/handy-ui/-/handy-ui-1.0.59.tgz#519b0f9da40ed22a1a5f5a5fc7432e6c73d08719"
+  integrity sha512-i80psdaF/p48OLUC8MhtGdPP3t0Dd1LNyn8X94kGmcnCyW5nC08uVJlNO8tRa4Qe28H2UDSCiqlwV2f9MhcTDg==
   dependencies:
     "@material-ui/core" "^4.11.0"
     axios "^0.21.1"

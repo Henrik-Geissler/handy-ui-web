@@ -37,8 +37,7 @@ const Components = [
       data.map(eachUser =>
         <li>
           {eachUser.name}
-          {' @ '}
-          {eachUser.company.name}
+          <b>{eachUser.company.name}</b>
         </li>
       )
     }
@@ -64,7 +63,7 @@ const [user, setUser] = useState(1)
 return (
   <>
     <Button
-      onClick={() => setUser(1+user%10)}
+      onClick={() => setUser(user+1)}
     >
       Next User
     </Button>
@@ -147,16 +146,16 @@ return (
     },
     {
       description:
-        'In this demo you can see how the handy-ui JPG Component handles Image Lazy Loading. With Primitive simple svg Shape with a size of 800Kb (!) are used as placeholders. This allows the Page to be ready and interactable in a minimal time while providing meaningful content. And When the Images comes in the Users Viewport handy-ui loads the actual image source and unblurs the Image with a nice animation when loading is done. For a better understanding, try to throttle your network connection with the DevTools.',
+        'The prettiest option to provide placeholders for images in 2021 is the svg blurred primitive (aka sqip). Loving this technology, we combine it with a lazy load just before the image comes into the browsers viewport and an unblur transition when loaded. This is more recognizable on a slow network connection. You can throttle yours with the DevTools.',
         demo:'Jpg',
       examples: [
         {
-          description: 'A single Jpg.',
+          description: 'A single 148KB jpg with a 1KB (!) svg placeholder. It loads immediately, because it is in the viewport already. Reload to see the transition.',
           snippet: `<Jpg src='files/img/sky'/>`,
-          title: 'Simple Image',
+          title: 'An image',
         },
         {
-          description: 'A long list of huge Images.',
+          description: 'A long list of very huge Images. But the initial load for the page to be interactable and provide meaningful content for all of the images is less then 1% of the images size. The actual image is loaded when it comes into the viewport. (Scroll down!)',
           snippet: `[
   'sky',
   'city',
@@ -164,7 +163,7 @@ return (
 ].map(item => 
   <Jpg src={\`files/img/\${item}\`}/>
 )`,
-          title: 'Images',
+          title: 'Place as many images as you want',
         },
       ],
       name: 'Jpg',
