@@ -38,37 +38,37 @@
         font-size: 8pt;
     }
  }
- @media (min-width: 400px) {
+ @media (min-width: 600px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 9pt;
     }
  }
- @media (min-width: 500px) {
+ @media (min-width: 800px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 10pt;
     }
  }
- @media (min-width: 600px) {
+ @media (min-width: 1200px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 11pt;
     }
  }
- @media (min-width: 800px) {
+ @media (min-width: 1400px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 12pt;
     }
  }
- @media (min-width: 1200px) {
+ @media (min-width: 1600px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 13pt;
     }
  }
- @media (min-width: 1600px) {
+ @media (min-width: 1800px) {
     code[class*="language-"],
     pre[class*="language-"] {
         font-size: 14pt;
