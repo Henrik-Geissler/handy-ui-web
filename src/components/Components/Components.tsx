@@ -210,7 +210,7 @@ return (
       subtitle: 'Images are ugly, until they are loaded.',
     },
     {
-      description: 'The css unit vh is relative to 1% of the viewport. Except it isn\'t. On most mobile devices the OS nav bar is on top of the viewport. A DOM Element with a height of 100vh should fit the screen, but in a lot of cases it\'s larger than the inner height of the screen. We can use the VrProvider. It provides a css variable representing 1% of the actual inner height of the screen. The css variable can be used like this: calc(var(--vh, 1vh) * YOUR_PERCENTAGE)',
+      description: 'The css unit vh is relative to 1% of the viewport height. Except it isn\'t. On most mobile devices the OS nav bar is on top of the viewport. A DOM Element with a height of 100vh should fit the screen, but in a lot of cases it\'s larger than the inner height of the screen. We can use the VrProvider. It provides a css variable representing 1% of the actual inner height of the screen. The css variable can be used like this: calc(var(--vh, 1vh) * YOUR_PERCENTAGE)',
       examples: [
         {
           description: 'We only need one VhProvider in our App. We can see that these are not the same size on a mobile browser.',
@@ -250,7 +250,7 @@ snippet: `<VhProvider/>
 }`,
 snippet: `<VhProvider/>
 <Button onClick={() => setShow(!show)}>
-    {show?'Hide':'Show'}
+  {show?'Hide':'Show'}
 </Button>
 
 <Fade in={show}>
@@ -265,7 +265,7 @@ snippet: `<VhProvider/>
         },
       ],
       name: 'VhProvider',
-      subtitle: 'Hopefully not necessary soon',
+      subtitle: 'Hopefully unnecessary one day',
     },
   ]
   
