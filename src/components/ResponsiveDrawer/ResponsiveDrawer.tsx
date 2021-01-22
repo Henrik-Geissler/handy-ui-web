@@ -140,6 +140,10 @@ export default function ResponsiveDrawer(props: Props) {
             </Typography>
             <Box className='handy-box' flexDirection="row" style={{display:'flex',marginBottom:'30px', marginTop:'30px'}}>
                 <div className='handy-code'>
+                    <If is={item.preSnippet!==''}>
+                      <Code lang='css' >{item.preSnippet}</Code>
+                      <br/>
+                    </If>
                     <Code lang='tsx' >{item.snippet}</Code>
                 </div>
                 <Paper
@@ -154,7 +158,7 @@ export default function ResponsiveDrawer(props: Props) {
                         maxHeight:'80vh',
                         borderStyle:'dashed',
                         borderWidth:'2px',
-                        transition: '2s ease',
+                        transition: '1s ease',
                     }}
                 >
                     <Demo demo={`${component.name}: ${item.title}`} setOpenComponent={(aha) => setOpenComponent(aha)} load={load}/>

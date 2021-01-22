@@ -11,7 +11,9 @@ import ResourceSimple from '../demos/ResourceSimple';
 import ResourceArray from '../demos/ResourceArray';
 import ResourceLoading from '../demos/ResourceLoading';
 import ResourceSwitch from '../demos/ResourceSwitch';
-import IfDemo from '../demos/IfDemo';
+import IfSimple from '../demos/IfSimple';
+import VhDemo from '../demos/VhDemo';
+import VhFullscreen from '../demos/VhFullscreen';
 type DemoProps = {
     demo:string
     setOpenComponent:CallableFunction
@@ -53,7 +55,7 @@ const Demo = ({demo,setOpenComponent,load}: DemoProps): JSX.Element => {
                 );
         case 'If: Render conditionally':
             return (
-                <IfDemo />
+                <IfSimple />
                 );
         case 'Jpg: An image':
             return (
@@ -78,6 +80,15 @@ const Demo = ({demo,setOpenComponent,load}: DemoProps): JSX.Element => {
         case 'Resource: Reload':
             return (
                 <ResourceSwitch />
+                );
+        case 'VhProvider: Use it':
+            return (
+                <VhDemo />
+                );
+        
+        case 'VhProvider: Full height':
+            return (
+                <VhFullscreen />
                 );
         default:
             return (

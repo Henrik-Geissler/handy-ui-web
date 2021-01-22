@@ -7,6 +7,7 @@ const Components = [
       examples: [
         {
           description: 'Click on any Component to see Details, Examples and API',
+          preSnippet: '',
           snippet: `yarn add handy-ui`,
           title: 'Getting started',
         },],
@@ -19,6 +20,7 @@ const Components = [
       examples: [
         {
           description: 'Fetch data from an API and render it when its loaded. In the render attribute we define what parts of the data should be rendered and how.',
+          preSnippet: '',
           snippet: `<Resource
   src='myapi.com/users/1'
   render={data =>
@@ -29,6 +31,7 @@ const Components = [
         },
         {
           description: 'Often times we want to loop over the fetched data. We can do so inside of the render property.',
+          preSnippet: '',
           snippet: `
 <ol>
   <Resource
@@ -47,7 +50,8 @@ const Components = [
         },
         {
             description: 'Optionally we can define a loading indicator.',
-            snippet: `<Resource
+            preSnippet: '',
+          snippet: `<Resource
   src='myapi.com/slowEndpoint'
   loadingIndicator={<CircularProgress />}
   render={data =>
@@ -58,7 +62,8 @@ const Components = [
           },
           {
               description: 'If we want to dynamically change the resource or just refetch, we just update the src.',
-              snippet: `
+              preSnippet: '',
+          snippet: `
 const [user, setUser] = useState(1)
 return (
   <>
@@ -86,17 +91,20 @@ return (
       examples: [
         {
           description: 'You can play some background music.',
+          preSnippet: '',
           snippet: `<Audio src='files/audio/exampleMusic' play/>
 {'Nothing to see, just listen 🎶'}`,
           title: 'Autoplay Music',
         },
         {
           description: 'Provide a simple Audio Player.',
+          preSnippet: '',
           snippet: `<Audio src='files/audio/exampleMusic'/>`,
           title: 'Simple Player',
         },
         {
           description: 'Control the Audio from anywhere in your App.',
+          preSnippet: '',
           snippet: `<Audio src='files/audio/exampleMusic'/>`,
           title: 'Custom Audio Control',
         },
@@ -109,6 +117,7 @@ return (
       examples: [
         {
           description: 'Highlight code in any language.',
+          preSnippet: '',
           snippet: `const myCode = \`
 @main-color: red;
 .foo {
@@ -123,6 +132,7 @@ return (
         },
         {
           description: 'Any children will not be rendered or executed. Instead the code of the component gets formatted and syntax highlighted. This is useful for debugging as well as for documentation.',
+          preSnippet: '',
           snippet: `<Code lang='tsx'>
   <Text id="CodeSample">Hello World!</Text>
 </Code>`,
@@ -137,7 +147,35 @@ return (
         examples: [
         {
           description: 'Inside of JSX, without complex syntax.',
-          snippet: `<Jpg src='files/img/tree'/>`,
+          preSnippet: '',
+          snippet: `
+const user = [
+  {
+    name: 'Prof Albert',
+  },
+  {
+    name: 'Dr Bernhard',
+    website: 'doc-bernhard.com',
+  },
+  {
+    name: 'Mr Corens',
+    website: 'corens.com',
+  },
+]
+
+return (
+  <>
+    {user.map(({name, website}) =>
+      <Card>
+        <Text>{name}</Text>
+        <If is={website}>
+          <br/>
+          <a href={website}>{website}</a>
+        </If>
+      </Card>
+    )}
+  </>
+)`,
           title: 'Render conditionally',
         },
       ],
@@ -151,11 +189,13 @@ return (
       examples: [
         {
           description: 'A single 148KB jpg with a 1KB (!) svg placeholder. It loads immediately, because it is in the viewport already. Reload to see the transition.',
+          preSnippet: '',
           snippet: `<Jpg src='files/img/sky'/>`,
           title: 'An image',
         },
         {
           description: 'A long list of very huge Images. But the initial load for the page to be interactable and provide meaningful content for all of the images is less then 1% of the images size. The actual image is loaded when it comes into the viewport. (Scroll down!)',
+          preSnippet: '',
           snippet: `[
   'sky',
   'city',
@@ -168,6 +208,64 @@ return (
       ],
       name: 'Jpg',
       subtitle: 'Images are ugly, until they are loaded.',
+    },
+    {
+      description: 'The css unit vh is relative to 1% of the viewport. Except it isn\'t. On most mobile devices the OS nav bar is on top of the viewport. A DOM Element with a height of 100vh should fit the screen, but in a lot of cases it\'s larger than the inner height of the screen. We can use the VrProvider. It provides a css variable representing 1% of the actual inner height of the screen. The css variable can be used like this: calc(var(--vh, 1vh) * YOUR_PERCENTAGE)',
+      examples: [
+        {
+          description: 'We only need one VhProvider in our App. We can see that these are not the same size on a mobile browser.',
+          preSnippet: `
+.noVhProvider {
+  backgroundColor: 'tomato';
+  height: '25vh';
+}
+.usingVhProvider {
+  backgroundColor: 'darkseagreen';
+  /** Fallback for browsers that don't support css vars **/
+  height: '25vh';
+  height: 'calc(var(--vh, 1vh) * 25)';
+}`,
+snippet: `<VhProvider/>
+
+<div className='noVhProvider'>
+  25vh no VhProvider
+</div>
+<div className='usingVhProvider'>
+  25vh using VhProvider
+</div>`,
+          title: 'Use it',
+        },
+        {
+          description: 'On most mobile devices, only the div using the VhProvider is completely in the viewport.',
+          preSnippet: `
+.noVhProvider {
+  backgroundColor: 'tomato';
+  height: '100vh';
+}
+.usingVhProvider {
+  backgroundColor: 'darkseagreen';
+  /** Fallback for browsers that don't support css vars **/
+  height: '100vh';
+  height: 'calc(var(--vh, 1vh) * 100)';
+}`,
+snippet: `<VhProvider/>
+<Button onClick={() => setShow(!show)}>
+    {show?'Hide':'Show'}
+</Button>
+
+<Fade in={show}>
+  <div className='noVhProvider'>
+    100vh no VhProvider
+  </div>
+  <div className='usingVhProvider'>
+    100vh using VhProvider
+  </div>
+</Fade>`,
+          title: 'Full height',
+        },
+      ],
+      name: 'VhProvider',
+      subtitle: 'Hopefully not necessary soon',
     },
   ]
   

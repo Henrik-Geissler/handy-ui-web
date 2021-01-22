@@ -1,5 +1,5 @@
 import React from 'react'
-import {If, RealHeight,ErrorBoundary,UnlockAudio,BodyWrapper,Error,Style,LazyImages,Jpg} from 'handy-ui'
+import {If, ErrorBoundary,UnlockAudio,BodyWrapper,Error,Style,LazyImages,Jpg} from 'handy-ui'
 import {SnackbarProvider} from 'notistack'
 import ResponsiveDrawer from '../ResponsiveDrawer/ResponsiveDrawer'
 
@@ -10,7 +10,6 @@ const App = () => {
         <SnackbarProvider>
             <ErrorBoundary>
                 <LazyImages />
-                <RealHeight />
                 <If is={true}>
                     <UnlockAudio />
                 </If>
